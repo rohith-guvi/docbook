@@ -3,10 +3,10 @@ import { isValidObjectId } from "mongoose";
 import { connectToDatabase } from "@/lib/mongodb";
 import Course from "@/models/Course";
 
-export async function GET(_: Request, { params }: { params: { id: string } }) {
+export async function GET(_: Request, { params }: { params: Promise<{ id: string }> }) {
   try {
     await connectToDatabase();
-    const { id } = params;
+    const { id } = await params;
 
     if (!isValidObjectId(id)) {
       return NextResponse.json({ message: "invalid course id" }, { status: 400 });

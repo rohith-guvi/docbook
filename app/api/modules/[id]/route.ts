@@ -3,10 +3,10 @@ import { isValidObjectId } from "mongoose";
 import { connectToDatabase } from "@/lib/mongodb";
 import ModuleModel from "@/models/Module";
 
-export async function PUT(req: Request, { params }: { params: { id: string } }) {
+export async function PUT(req: Request, { params }: { params: Promise<{ id: string }> }) {
   try {
     await connectToDatabase();
-    const { id } = params;
+    const { id } = await params;
 
     if (!isValidObjectId(id)) {
       return NextResponse.json({ message: "invalid module id" }, { status: 400 });
@@ -33,10 +33,10 @@ export async function PUT(req: Request, { params }: { params: { id: string } }) 
   }
 }
 
-export async function DELETE(_: Request, { params }: { params: { id: string } }) {
+export async function DELETE(_: Request, { params }: { params: Promise<{ id: string }> }) {
   try {
     await connectToDatabase();
-    const { id } = params;
+    const { id } = await params;
 
     if (!isValidObjectId(id)) {
       return NextResponse.json({ message: "invalid module id" }, { status: 400 });
