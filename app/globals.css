@@ -1,0 +1,58 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans), sans-serif;
+  @apply bg-black text-zinc-100 antialiased selection:bg-emerald-400/30 selection:text-emerald-100;
+}
+
+a {
+  @apply text-slate-300 hover:text-white;
+}
+
+.glass-panel {
+  @apply rounded-2xl border border-zinc-800/80 bg-black/80 backdrop-blur;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-display), sans-serif;
+}
+
+code,
+.font-mono {
+  font-family: var(--font-mono), monospace;
+}
+
+.learn-enter {
+  animation: learn-enter 600ms ease both;
+}
+
+.learn-section {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 500ms ease, transform 500ms ease;
+}
+
+.learn-section-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@keyframes learn-enter {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
